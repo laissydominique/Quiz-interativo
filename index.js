@@ -6,67 +6,60 @@ document.addEventListener("DOMContentLoaded", () => {
       b: "Flor de Cerejeira",
       c: "Girassol",
       d: "Flor de Jabuticabeira",
-      correta: "b",
+      correta: "altB",
     },
-
     {
       questao: "Qual o maior país do mundo?",
       a: "França",
       b: "China",
       c: "Rússia",
       d: "Estados Unidos",
-      correta: "c",
+      correta: "altC",
     },
-
     {
       questao: "Qual o menor país do mundo?",
       a: "Austrália",
       b: "Canadá",
       c: "índia",
       d: "Vaticano",
-      correta: "d",
+      correta: "altD",
     },
-
     {
       questao: " Quantos dias são necessários para a Terra orbitar o sol?",
       a: "365",
       b: "12",
       c: "300",
       d: "31",
-      correta: "a",
+      correta: "altA",
     },
-
     {
       questao: " Qual é o rio mais longo do mundo?",
       a: "Rio Amazonas",
       b: "Rio Congo",
       c: "Rio Nilo",
       d: "Rio Mississippi",
-      correta: "a",
+      correta: "altC",
     },
-
     {
       questao: "Qual o nome do primeiro filme da Disney?",
       a: "Cinderela",
       b: "Toy Story",
       c: "Branca de neve e os sete anões",
       d: "Encantada",
-      correta: "c",
+      correta: "altC",
     },
-
     {
       questao: "Qual o planeta mais próximo do sol?",
       a: "Júpter",
       b: "Mercurio",
       c: "Vênus",
       d: "Terra",
-      correta: "b",
+      correta: "altB",
     },
   ];
-  const container = document.querySelector(".container");
 
   const iniciar = document.querySelector("#iniciar");
-  const alt = document.querySelectorAll(".alt");
+  const alt = document.querySelectorAll('input[name="alt"]');
   const jogo = document.querySelector(".jogo");
   const questao = document.querySelector(".questao");
   const submit = document.querySelector(".submit");
@@ -101,27 +94,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function selecionar() {
     let resposta;
-    alt.forEach((al) => {
-      if (al.checked) {
+    for (let al of alt) {
+      if (al.checked === true) {
         resposta = al.id;
+        break;
       }
-    });
+    }
     return resposta;
   }
 
   submit.addEventListener("click", () => {
     const resposta = selecionar();
     if (resposta) {
-      if (resposta == perguntas[perguntaAtual].correta) {
+      if (resposta === perguntas[perguntaAtual].correta) {
+        pontos += 10;
         console.log("correta");
-        pontos++;
+      } else {
+        console.log("errou");
       }
       perguntaAtual++;
       if (perguntaAtual < perguntas.length) {
         jogar();
       } else {
         jogo.innerHTML = `
-          <h2>Você respondeu corretamente ${pontos}/${perguntas.length} questões. <br> Pontuação final: ${pontos} pontos.</h2>
+          <h2>Você respondeu corretamente ${pontos / 10}/${perguntas.length} questões. <br> Pontuação final: ${pontos} pontos.</h2>
           <button onclick="location.reload()">Recomeçar</button>
         `;
       }
