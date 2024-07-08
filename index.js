@@ -51,9 +51,35 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       questao: "Qual o planeta mais próximo do sol?",
       a: "Júpter",
-      b: "Mercurio",
+      b: "Mercário",
       c: "Vênus",
       d: "Terra",
+      correta: "altB",
+    },
+
+    {
+      questao: "Quem pintou a Mona Lisa?",
+      a: "Vincent van Gogh",
+      b: "Leonardo da Vinci",
+      c: "Michelangelo",
+      d: "Pablo Picasso",
+      correta: "altB",
+    },
+
+    {
+      questao: "Qual é o animal terrestre mais rápido do mundo?",
+      a: "Leopardo",
+      b: "Tigre",
+      c: "Guepardo",
+      d: "Leão",
+      correta: "altC",
+    },
+    {
+      questao: "Qual é a moeda oficial do Japão?",
+      a: "Yuan",
+      b: "Yen",
+      c: "Won",
+      d: "Peso",
       correta: "altB",
     },
   ];
@@ -63,6 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const jogo = document.querySelector(".jogo");
   const questao = document.querySelector(".questao");
   const submit = document.querySelector(".submit");
+  const nome = document.querySelector(".nome");
+  const label = document.querySelector(".labelNome");
 
   const respA = document.getElementById("respA");
   const respB = document.getElementById("respB");
@@ -73,10 +101,43 @@ document.addEventListener("DOMContentLoaded", () => {
   let pontos = 0;
 
   iniciar.addEventListener("click", () => {
-    jogo.classList.remove("hidden");
-    iniciar.classList.add("hidden");
+    if (!nome.value) {
+      alert("Nome de jogador inválido")
+      return;
+    }
+    setTimeout(delayConteudo, 3000);
+    carregando();
+    adicionaRemoveHidden();
     jogar();
   });
+
+  function adicionaRemoveHidden() {
+    const nome = document.querySelector(".nome");
+    const label = document.querySelector(".labelNome");
+    const bemVindo = document.querySelector(".bemVindo");
+    const iniciar = document.querySelector("#iniciar");
+
+    bemVindo.classList.remove("hidden");
+    label.classList.add("hidden");
+    nome.classList.add("hidden");
+    iniciar.classList.add("hidden");
+  }
+
+  function carregando() {
+    const bemVindo = document.querySelector(".bemVindo");
+    const carregando = document.querySelector(".carregando");
+    carregando.classList.remove("hidden");
+    bemVindo.innerHTML = `Bem vindo(a), ${nome.value}`;
+  }
+
+  function delayConteudo() {
+    const carregando = document.querySelector(".carregando");
+    const bemVindo = document.querySelector(".bemVindo");
+    const jogo = document.querySelector(".jogo");
+    jogo.classList.remove("hidden");
+    carregando.classList.add("hidden");
+    bemVindo.classList.add("hidden");
+  }
 
   function jogar() {
     desmarcar();
@@ -114,10 +175,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       perguntaAtual++;
       if (perguntaAtual < perguntas.length) {
+        const nome = document.querySelector(".nome");
         jogar();
       } else {
         jogo.innerHTML = `
-          <h2>Você respondeu corretamente ${pontos / 10}/${perguntas.length} questões. <br> Pontuação final: ${pontos} pontos.</h2>
+          <h2>Você respondeu corretamente ${pontos / 10}/${
+          perguntas.length
+        } questões, ${nome.value}. <br> Pontuação final: ${pontos} pontos.</h2>
           <button onclick="location.reload()">Recomeçar</button>
         `;
       }

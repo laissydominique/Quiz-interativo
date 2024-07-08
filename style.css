@@ -8,3 +8,21 @@
     font-family: sans-serif;
 }
 
+body{
+   background-color: rgb(222, 241, 194);
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login {
+    margin-top: 350px;
+    font-weight: bold;
+    display: grid;
+}
+
+.nome{
+
