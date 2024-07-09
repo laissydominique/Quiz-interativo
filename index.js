@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       questao: " Quantos dias são necessários para a Terra orbitar o sol?",
-      a: "365",
-      b: "12",
-      c: "300",
-      d: "31",
+      a: "365 dias",
+      b: "12 dias",
+      c: "300 dias",
+      d: "31 dias",
       correta: "altA",
     },
     {
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       questao: "Qual o planeta mais próximo do sol?",
       a: "Júpter",
-      b: "Mercário",
+      b: "Mercúrio",
       c: "Vênus",
       d: "Terra",
       correta: "altB",
@@ -179,11 +179,13 @@ document.addEventListener("DOMContentLoaded", () => {
         jogar();
       } else {
         jogo.innerHTML = `
-          <h2>Você respondeu corretamente ${pontos / 10}/${
-          perguntas.length
-        } questões, ${nome.value}. <br> Pontuação final: ${pontos} pontos.</h2>
-          <button onclick="location.reload()">Recomeçar</button>
-        `;
+        <div class="fim"> 
+          <h2>Você respondeu corretamente <span> ${pontos / 10}/${
+          perguntas.length 
+        } </span>  questões, ${nome.value}. <br> Pontuação final: <span> ${pontos}  </span> pontos.</h2> </div>
+          <div class= "botaoFim">
+        <button class= "recomecar" onclick="location.reload()">Recomeçar</button></div>
+       `;
       }
     }
   });

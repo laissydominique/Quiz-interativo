@@ -9,16 +9,29 @@
   </head>
   <body>
     <div class="container">
-      <div class="login"> 
-      <label for="nome" class="labelNome">Jogador:</label>
-      <input type="text" placeholder="Digite o seu nome aqui" class="nome" required autofocus>
-      <button class="iniciar" name="iniciar" id="iniciar">Iniciar</button>
-
-    </div>
+      <div class="login">
+        <label for="nome" class="labelNome">Jogador:</label>
+        <input
+          type="text"
+          placeholder="Digite o seu nome aqui"
+          class="nome"
+          required
+          autofocus
+        
+        />
+        <button class="iniciar" name="iniciar" id="iniciar">Iniciar</button>
+      </div>
+      <div class="iniciando">
       <p class="bemVindo hidden">Bem vindo(a), nome</p>
       <p class="carregando hidden">carregando...</p>
+    </div>
       <div class="jogo hidden">
+
+        <clas class="questoes">
+
         <h1 class="questao">QUESTÃO</h1>
+
+        <div class="inputs">
 
         <input type="radio" name="alt" id="altA" class="alt" />
         <label for="altA" id="respA">respostaA</label>
@@ -31,8 +44,11 @@
 
         <input type="radio" name="alt" id="altD" class="alt" />
         <label for="altD" id="respD">respostaD</label>
-
+      </div>
+      </clas>
+        <div class="botao"> 
         <button type="button" class="submit">Enviar</button>
+      </div>
       </div>
     </div>
   </body>
